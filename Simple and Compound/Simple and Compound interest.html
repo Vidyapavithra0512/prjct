@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interest Calculator </title>
+    <link rel="stylesheet" href="Simple_and_Compound_interest.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="menu">
+            <div class="item si active">
+                Simple Interest
+            </div>
+            <div class="item ci">
+                Compound Interest
+            </div>
+        </div>
+        <div class="form">
+            <div class="input">
+                <label>Principal Amount <span class="req">*</span></label>
+                <input type="text" id="PA" placeholder="eg:1000" autocomplete="off">
+            </div>
+            <div class="input">
+                <label>Interest Rate (%) <span class="req">*</span></label>
+                <input type="text" id="IR" placeholder="eg:10" autocomplete="off">
+            </div>
+            <div class="input">
+                <label> Duration (Year) <span class="req">*</span></label>
+                <input type="text" id="DY" placeholder="eg:1" autocomplete="off">
+            </div>
+            <div class="input ci-freq">
+                <label>Frequency (Year) <span class="req">*</span></label>
+                <input type="text" id="FY" placeholder="eg:3" autocomplete="off">
+            </div>
+        </div>
+        <div class="btn_wrap">
+            <button class="btn">Calculate</button>
+        </div>
+        <div class="result">
+            <strong> Total Amount : </strong>
+            <span class="total-amount">1000</span>
+        </div>
+
+
+    </div>
+
+
+    <script>
+        const interestType = {
+            si: 0,
+            ci: 1
+        }
+        let selectedInterest = interestType.si;
+
+
+        const SIButton = document.getElementsByClassName("si")[0];
+        const CIButton = document.getElementsByClassName("ci")[0];
+        const CIFrequency = document.getElementsByClassName("ci-freq")[0];
+        const resultwrapper = document.getElementsByClassName("result")[0];
+        const Calculate = document.getElementsByClassName("btn")[0];
+
+        CIFrequency.style.display = 'none';
+        resultwrapper.style.display = 'none';
+
+        const selectedInterestType = (type) => {
+            reset();
+            selectedInterest = type;
+            updateInterestFeature();
+        }
+
+        const reset = () => {
+            const pa = document.getElementById("PA").value = '';
+            const ir = document.getElementById("IR").value = '';
+            const dy = document.getElementById("DY").value = '';
+
+            if (selectedInterest === interestType.ci) {
+                const fy = document.getElementById("FY").value = '';
+            }
+
+            resultwrapper.style.display = 'none';
+        }
+
+        const updateInterestFeature = () => {
+            if (selectedInterest === interestType.si) {
+                CIButton.classList.remove('active');
+                SIButton.classList.add('active');
+                CIFrequency.style.display = 'none';
+            } else {
+                SIButton.classList.remove('active');
+                CIButton.classList.add('active');
+                CIFrequency.style.display = 'block';
+            }
+        }
+
+        const calculateAmount = () => {
+            const pa = document.getElementById("PA").value;
+            const ir = document.getElementById("IR").value;
+            const dy = document.getElementById("DY").value;
+            const fy = document.getElementById("FY").value;
+
+            if (!pa || !ir || !dy || (window.getComputedStyle(CIFrequency).display !== "none" && !fy)) {
+                alert("All fields are required.");
+                reset();
+                return;
+            }
+
+            if (isNaN(pa) || isNaN(ir) || isNaN(dy) || (window.getComputedStyle(CIFrequency).display !== "none" && isNaN(fy))) {
+                alert("All values must be numeric only!");
+                reset();
+                return;
+            }
+
+            const finalamount = document.getElementsByClassName('total-amount')[0];
+
+            let result = 0;
+
+            if (selectedInterest === interestType.si) {
+                result = pa * (1 + (ir * dy));
+            }
+
+            if (selectedInterest === interestType.ci) {
+
+                result = pa * Math.pow((1 + (dy / fy)), fy * dy);
+            }
+
+            resultwrapper.style.display = 'block';
+            finalamount.innerHTML = result;
+        }
+
+
+        SIButton.addEventListener('click', () => {
+            selectedInterestType(interestType.si);
+        })
+
+        CIButton.addEventListener('click', () => {
+            selectedInterestType(interestType.ci)
+
+        })
+
+        Calculate.addEventListener('click', calculateAmount);
+    </script>
+</body>
+
+</html>

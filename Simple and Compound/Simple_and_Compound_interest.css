@@ -1,0 +1,114 @@
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        outline: none;
+    }
+    
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100%;
+        font-family: sans-serif;
+        font-size: large;
+    }
+    
+    .container {
+        min-width: 600px;
+        box-shadow: 1px 1px 10px #000000;
+        padding: 20px 15px;
+        border-radius: 15px;
+    }
+    
+    .menu {
+        display: flex;
+    }
+    
+    .item {
+        flex-basis: 50%;
+        text-align: center;
+        padding: 10px;
+        border: 1px solid #000000;
+        cursor: pointer;
+        transition: all 0.15 ease-out;
+    }
+    
+    .item:hover {
+        border: 1px solid transparent;
+        color: white;
+        background-color: #000000;
+    }
+    
+    .item:nth-child(2) {
+        margin-top: 10px;
+        margin-left: 20px;
+        border-radius: 15px;
+    }
+    
+    .item:nth-child(1) {
+        margin-top: 10px;
+        border-radius: 15px;
+    }
+    
+    .form {
+        margin-top: 25px;
+        padding-top: 25px;
+        border-top: 1px solid;
+    }
+    
+    .input {
+        margin-bottom: 15px;
+    }
+    
+    .input label {
+        display: block;
+    }
+    
+    .input input {
+        margin-top: 8px;
+        min-height: 30px;
+        padding: 5px;
+        min-width: 300px;
+        border: 1px solid #000000;
+    }
+    
+    .req {
+        color: red;
+        font-size: x-large;
+    }
+    
+    .btn {
+        padding: 10px 15px;
+        border: 10px;
+        font-size: 16px;
+        color: white;
+        background-color: red;
+        border-radius: 15px;
+        margin-left: 40px;
+        cursor: pointer;
+    }
+    
+    .btn:hover {
+        background-color: rgb(126, 36, 36);
+    }
+    
+    .btn_wrap {
+        text-align: center;
+        margin-top: 25px;
+    }
+    
+    .active {
+        border: 1px solid transparent;
+        color: white;
+        background-color: #000000;
+    }
+    
+    .result {
+        margin-top: 25px;
+        border: 1px solid rgb(142, 128, 128);
+        padding: 15px;
+        border-radius: 15px;
+        text-align: center;
+    }
